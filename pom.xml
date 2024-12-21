@@ -4,6 +4,38 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.example</groupId>
+    <artifactId>automation-framework</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>Automation Framework</name>
+    <description>A reusable framework for UI and API testing</description>
+    <url>https://github.com/eliran-hackeru/automation-framework</url>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>1/id>
+            <name>Eliran Duveen</name>
+            <email>eduveen@gmail.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/eliran-hackeru/automation-framework</url>
+        <connection>scm:git:git://github.com/eliran-hackeru/automation-framework.git</connection>
+        <developerConnection>scm:git:ssh://github.com/eliran-hackeru/automation-framework.git</developerConnection>
+    </scm>
+
+
     <groupId>org.example</groupId>
     <artifactId>Automation_Framework</artifactId>
     <version>1.0-SNAPSHOT</version>
