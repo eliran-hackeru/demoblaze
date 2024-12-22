@@ -23,7 +23,7 @@
 
     <developers>
         <developer>
-            <id>1/id>
+            <id>1</id>
             <name>Eliran Duveen</name>
             <email>eduveen@gmail.com</email>
         </developer>
@@ -36,9 +36,9 @@
     </scm>
 
 
-    <groupId>org.example</groupId>
+    <!-- <groupId>com.example</groupId>
     <artifactId>Automation_Framework</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version> -->
 
     <properties>
         <maven.compiler.source>23</maven.compiler.source>
