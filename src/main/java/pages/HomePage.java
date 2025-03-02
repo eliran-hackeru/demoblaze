@@ -4,10 +4,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.RandomUtil;
 import utils.WaitUtils;
 
+import java.time.Duration;
+import java.util.List;
+
 public class HomePage {
-    private WebDriver driver;
+    protected WebDriver driver;
 
     @FindBy(id = "loginusername")
     private WebElement usernameField;
@@ -26,6 +32,15 @@ public class HomePage {
 
     @FindBy(id = "logInModalLabel")
     private WebElement loginForm;
+
+    @FindBy(css = "h4.card-title a.hrefch")
+    private List<WebElement> products;
+
+    @FindBy(id = "cartur")
+    private WebElement cartButton;
+
+    @FindBy(id = "tbodyid")
+    private WebElement tableBody;
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -47,5 +62,17 @@ public class HomePage {
     public String getNameOfUser() {
         WaitUtils.waitForElementToBeVisible(driver, nameOfUser, 10);
         return nameOfUser.getText();
+    }
+
+    public void clickOnRandomProduct() {
+        WaitUtils.waitForElementToBeVisible(driver, tableBody, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfAllElements(products));
+
+        products.getLast().click();
+    }
+
+    public void goToCart() {
+        cartButton.click();
     }
 }

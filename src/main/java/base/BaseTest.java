@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 
 public class BaseTest {
-    public static WebDriver driver;
+    /*public static WebDriver driver;
 
     @BeforeSuite
     public void beforeSuite() {
@@ -37,5 +37,5 @@ public class BaseTest {
     @AfterSuite
     public void afterSuite() {
         System.out.println("Test Suite Completed...");
-    }
+    }*/
 }

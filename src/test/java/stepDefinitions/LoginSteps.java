@@ -1,19 +1,21 @@
 package stepDefinitions;
 
 import io.cucumber.java.en.*;
+import org.openqa.selenium.WebDriver;
 import pages.HomePage;
-import base.BaseTest;
+import utils.ConfigReader;
 import utils.XMLTestDataUtil;
 import org.testng.Assert;
 
 import java.util.Objects;
 
-public class LoginSteps extends BaseTest {
+public class LoginSteps {
     HomePage homePage;
+    WebDriver driver = Hooks.driver;
 
     @Given("the user is on the home page and clicked the Login button")
     public void theUserIsOnTheHomePage() {
-        driver.get("https://www.demoblaze.com/");
+        driver.get(ConfigReader.getProperty("baseUrl"));
         homePage = new HomePage(driver);
         homePage.clickLogin();
     }
@@ -28,8 +30,6 @@ public class LoginSteps extends BaseTest {
     @Then("the user name should be appeared on the page header")
     public void theUserNameShouldBeAppeared() {
         String username = XMLTestDataUtil.getValue("validUser", "username");
-
-        //WaitUtils.waitForElementToContainText(driver, homePage.getNameOfUserElement(), username, 10);
 
         Assert.assertTrue(homePage.getNameOfUser().contains(Objects.requireNonNull(username)));
     }

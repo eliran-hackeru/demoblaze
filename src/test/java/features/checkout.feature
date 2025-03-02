@@ -6,7 +6,7 @@ Scenario: Checkout Process
   And they enter valid payment and shipping details
   Then the order should be successfully placed
 
-Scenario: Attempt Checkout with an Empty Cart
+Scenario: Checkout with an Empty Cart
   Given the user has an empty cart
   When they try to proceed to checkout
   Then they should see a message preventing checkout
