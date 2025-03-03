@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -23,18 +24,23 @@ public class CheckoutSteps {
     @Given("the user has items in their cart")
     public void theUserHasItemsInTheirCart() {
         driver.get(ConfigReader.getProperty("baseUrl"));
+        Assert.assertTrue(homePage.isHomePageDisplayed(), "Home page is not displayed");
 
         homePage.clickOnRandomProduct();
 
         productPage.addProductToCart();
     }
 
-    @When("they go to checkout and they enter valid payment and shipping details")
-    public void theyGoToCheckout() {
+    @When("the user goes to checkout")
+    public void theUserGoesToCheckout() {
         homePage.goToCart();
+    }
 
+    @And("the user enters valid payment and shipping details")
+    public void theUserEntersValidPaymentAndShippingDetails() {
         cartPage.placeAnOrder();
     }
+
 
     @Then("the order should be successfully placed")
     public void theOrderShouldBeSuccessfullyPlaced() {

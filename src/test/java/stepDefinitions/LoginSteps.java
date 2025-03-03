@@ -10,13 +10,14 @@ import org.testng.Assert;
 import java.util.Objects;
 
 public class LoginSteps {
-    HomePage homePage;
     WebDriver driver = Hooks.driver;
+    HomePage homePage = new HomePage(driver);
 
     @Given("the user is on the home page and clicked the Login button")
     public void theUserIsOnTheHomePage() {
         driver.get(ConfigReader.getProperty("baseUrl"));
-        homePage = new HomePage(driver);
+        Assert.assertTrue(homePage.isHomePageDisplayed(), "Home page is not displayed");
+
         homePage.clickLogin();
     }
 

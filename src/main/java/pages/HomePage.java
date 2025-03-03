@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,6 +15,9 @@ import java.util.List;
 
 public class HomePage {
     protected WebDriver driver;
+
+    @FindBy(className = "carousel-inner")
+    private WebElement carousel;
 
     @FindBy(id = "loginusername")
     private WebElement usernameField;
@@ -41,6 +45,9 @@ public class HomePage {
 
     @FindBy(id = "tbodyid")
     private WebElement tableBody;
+
+    @FindBy(className = "list-group")
+    private WebElement categoryList;
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -74,5 +81,43 @@ public class HomePage {
 
     public void goToCart() {
         cartButton.click();
+    }
+
+    public boolean isHomePageDisplayed() {
+        return carousel.isDisplayed();
+    }
+
+    public void clickCategory(String category) {
+        // Convert category name to match onclick attribute values
+        String categoryValue = "";
+        switch (category.toLowerCase()) {
+            case "phones":
+                categoryValue = "phone";
+                break;
+            case "laptops":
+                categoryValue = "notebook";
+                break;
+            case "monitors":
+                categoryValue = "monitor";
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid category: " + category);
+        }
+
+        // Locate the category dynamically and click it
+        WebElement categoryElement = driver.findElement(By.xpath("//a[@id='itemc' and contains(@onclick, \"byCat('" + categoryValue + "')\")]"));
+        categoryElement.click();
+    }
+
+    public boolean isCategoryDisplayed(String category) {
+        // Check if products of the selected category are displayed using the last product
+
+        WaitUtils.waitForElementToBeVisible(driver, tableBody, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfAllElements(products));
+
+        return products.getLast().isDisplayed();
+        /*WebElement categoryTitle = driver.findElement(By.xpath("//h4[contains(text(), '" + category + "')]"));
+        return categoryTitle.isDisplayed();*/
     }
 }

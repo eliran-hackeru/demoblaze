@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,10 +21,7 @@ public class ProductPage extends HomePage {
     public void addProductToCart() {
         waitForElementToBeClickable(driver, addToCartButton, 10);
 
-        addToCartButton.click();
-
-        System.out.println(getAlertText(driver));
-
-        acceptAlert(driver);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", addToCartButton);
     }
 }
