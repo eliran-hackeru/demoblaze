@@ -40,4 +40,10 @@ public class WaitUtils {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
         wait.until(ExpectedConditions.textToBePresentInElement(element, text));
     }
+
+    public static String waitForAlertAndGetText(WebDriver driver) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.alertIsPresent());
+        return driver.switchTo().alert().getText();
+    }
 }

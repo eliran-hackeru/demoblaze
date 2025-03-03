@@ -48,6 +48,18 @@ public class HomePage {
     @FindBy(className = "list-group")
     private WebElement categoryList;
 
+    @FindBy(id = "signin2")
+    private WebElement signUpHeader;
+
+    @FindBy(id = "sign-username")
+    private WebElement signUsername;
+
+    @FindBy(id = "sign-password")
+    private WebElement signPassword;
+
+    @FindBy(xpath = "//button[text()='Sign up']")
+    private WebElement signUpConfirmButton;
+
     public HomePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -111,5 +123,23 @@ public class HomePage {
         WaitUtils.waitForElementToBeVisible(driver, tableBody, 10);
         waitForAllElementsToBeVisible(driver, products, 10);
         return products.getLast().isDisplayed();
+    }
+
+    public void clickSignUpButton() {
+        WaitUtils.waitForElementToBeClickable(driver, signUpHeader, 10);
+        signUpHeader.click();
+    }
+
+    public void enterSignUpUsername(String username) {
+        WaitUtils.waitForElementToBeClickable(driver, signUsername, 10);
+        signUsername.sendKeys(username);
+    }
+
+    public void enterSignUpPassword(String password) {
+        signPassword.sendKeys(password);
+    }
+
+    public void clickSignUpConfirmButton() {
+        signUpConfirmButton.click();
     }
 }
