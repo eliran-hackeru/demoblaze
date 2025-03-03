@@ -5,8 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static utils.AlertUtil.acceptAlert;
-import static utils.AlertUtil.getAlertText;
 import static utils.WaitUtils.waitForElementToBeClickable;
 import static utils.WaitUtils.waitForElementToBeVisible;
 

@@ -4,15 +4,12 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.List;
 
 import static utils.WaitUtils.*;
 
-public class CartPage extends HomePage{
+public class CartPage extends HomePage {
 
     public CartPage(WebDriver driver) {
         super(driver);
@@ -24,25 +21,25 @@ public class CartPage extends HomePage{
     @FindBy(className = "success")
     private WebElement item;
 
-    @FindBy(id ="totalm")
+    @FindBy(id = "totalm")
     private WebElement totalm;
 
     @FindBy(id = "name")
     private WebElement fullName;
 
-    @FindBy(id ="country")
+    @FindBy(id = "country")
     private WebElement country;
 
-    @FindBy(id ="city")
+    @FindBy(id = "city")
     private WebElement city;
 
-    @FindBy(id ="card")
+    @FindBy(id = "card")
     private WebElement creditCard;
 
-    @FindBy(id ="month")
+    @FindBy(id = "month")
     private WebElement cardMonth;
 
-    @FindBy(id ="year")
+    @FindBy(id = "year")
     private WebElement cardYear;
 
     @FindBy(css = "button[onclick='purchaseOrder()']")
@@ -102,10 +99,8 @@ public class CartPage extends HomePage{
             if (cartItems.get(i).getText().equalsIgnoreCase(productName)) {
                 deleteButtons.get(i).click(); // Click the corresponding delete button
 
-                // Wait for the product to be removed
-                WebElement item = cartItems.get(i);
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-                wait.until(ExpectedConditions.stalenessOf(item)); // Wait for item to disappear
+                WebElement item = cartItems.get(i); // Hold the item for the wait
+                waitForElementToBeStale(driver, item, 10); // Wait for item to disappear
                 return; // Exit after deleting the product
             }
         }

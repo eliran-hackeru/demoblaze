@@ -17,7 +17,6 @@ public class LoginSteps {
     public void theUserIsOnTheHomePage() {
         driver.get(ConfigReader.getProperty("baseUrl"));
         Assert.assertTrue(homePage.isHomePageDisplayed(), "Home page is not displayed");
-
         homePage.clickLogin();
     }
 
@@ -31,7 +30,6 @@ public class LoginSteps {
     @Then("the user name should be appeared on the page header")
     public void theUserNameShouldBeAppeared() {
         String username = XMLTestDataUtil.getValue("validUser", "username");
-
         Assert.assertTrue(homePage.getNameOfUser().contains(Objects.requireNonNull(username)));
     }
 }

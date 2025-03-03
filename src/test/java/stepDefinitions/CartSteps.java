@@ -17,7 +17,7 @@ public class CartSteps {
     ProductPage productPage = new ProductPage(driver);
     CartPage cartPage = new CartPage(driver);
 
-    String productName = "";
+    String productName = ""; //Place holder
 
     @Given("the user has entered the home page")
     public void theUserIsOnTheHomePage() {
@@ -28,9 +28,7 @@ public class CartSteps {
     @And("the user adds a product to the cart")
     public void theUserAddsAProductToTheCart() {
         homePage.clickOnRandomProduct();
-
         productName = productPage.getProductName();
-
         productPage.addProductToCart();
     }
 

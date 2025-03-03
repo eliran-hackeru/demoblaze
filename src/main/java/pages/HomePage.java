@@ -5,15 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.RandomUtil;
 import utils.WaitUtils;
 
-import java.time.Duration;
 import java.util.List;
 
 import static utils.RandomUtil.getRandomNumber;
+import static utils.WaitUtils.waitForAllElementsToBeVisible;
 
 public class HomePage {
     protected WebDriver driver;
@@ -75,9 +72,7 @@ public class HomePage {
 
     public void clickOnRandomProduct() {
         WaitUtils.waitForElementToBeVisible(driver, tableBody, 10);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfAllElements(products));
-
+        waitForAllElementsToBeVisible(driver, products, 10);
         products.get(getRandomNumber()).click();
     }
 
@@ -111,15 +106,10 @@ public class HomePage {
         categoryElement.click();
     }
 
+    // Check if products of the selected category are displayed using the last product
     public boolean isCategoryDisplayed(String category) {
-        // Check if products of the selected category are displayed using the last product
-
         WaitUtils.waitForElementToBeVisible(driver, tableBody, 10);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfAllElements(products));
-
+        waitForAllElementsToBeVisible(driver, products, 10);
         return products.getLast().isDisplayed();
-        /*WebElement categoryTitle = driver.findElement(By.xpath("//h4[contains(text(), '" + category + "')]"));
-        return categoryTitle.isDisplayed();*/
     }
 }

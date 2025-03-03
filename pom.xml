@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>automation-framework</artifactId>
+    <artifactId>demoblaze</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>Automation Framework</name>
-    <description>A reusable framework for UI and API testing</description>
-    <url>https://github.com/eliran-hackeru/automation-framework</url>
+    <name>DemoBlaze Automation Framework</name>
+    <description>Assignment - QA Automation Engineer at Nanox</description>
+    <url>https://github.com/eliran-hackeru/demoblaze</url>
 
     <licenses>
         <license>
@@ -30,15 +30,10 @@
     </developers>
 
     <scm>
-        <url>https://github.com/eliran-hackeru/automation-framework</url>
-        <connection>scm:git:git://github.com/eliran-hackeru/automation-framework.git</connection>
-        <developerConnection>scm:git:ssh://github.com/eliran-hackeru/automation-framework.git</developerConnection>
+        <url>https://github.com/eliran-hackeru/demoblaze</url>
+        <connection>scm:git:git://github.com/eliran-hackeru/demoblaze.git</connection>
+        <developerConnection>scm:git:ssh://github.com/eliran-hackeru/demoblaze.git</developerConnection>
     </scm>
-
-
-    <!-- <groupId>com.example</groupId>
-    <artifactId>Automation_Framework</artifactId>
-    <version>1.0-SNAPSHOT</version> -->
 
     <properties>
         <maven.compiler.source>23</maven.compiler.source>
@@ -52,13 +47,6 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>4.27.0</version>
-        </dependency>
-
-        <!-- RestAssured -->
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>5.5.0</version>
         </dependency>
 
         <!-- TestNG -->
@@ -103,7 +91,9 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.5.2</version>
                 <configuration>
-                    <skipTests>true</skipTests>
+                    <includes>
+                        <include>runners/*.java</include>
+                    </includes>
                 </configuration>
             </plugin>
         </plugins>

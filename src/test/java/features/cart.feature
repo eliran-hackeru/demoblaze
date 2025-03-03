@@ -1,5 +1,6 @@
 Feature: Add & Remove Item from Cart
 
+  @Cart
   Scenario Outline: User adds and removes an item from the cart
     Given the user has entered the home page
     And the user adds a product to the cart

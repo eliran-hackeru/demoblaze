@@ -10,9 +10,6 @@ import pages.CartPage;
 import pages.HomePage;
 import pages.ProductPage;
 import utils.ConfigReader;
-import utils.XMLTestDataUtil;
-
-import java.util.Objects;
 
 public class CheckoutSteps {
     WebDriver driver = Hooks.driver;
@@ -20,14 +17,11 @@ public class CheckoutSteps {
     ProductPage productPage = new ProductPage(driver);
     CartPage cartPage = new CartPage(driver);
 
-
     @Given("the user has items in their cart")
     public void theUserHasItemsInTheirCart() {
         driver.get(ConfigReader.getProperty("baseUrl"));
         Assert.assertTrue(homePage.isHomePageDisplayed(), "Home page is not displayed");
-
         homePage.clickOnRandomProduct();
-
         productPage.addProductToCart();
     }
 
@@ -41,11 +35,9 @@ public class CheckoutSteps {
         cartPage.placeAnOrder();
     }
 
-
     @Then("the order should be successfully placed")
     public void theOrderShouldBeSuccessfullyPlaced() {
         cartPage.verifiedPurchase();
-
         String message = cartPage.getSuccessMessage();
         Assert.assertEquals(message, "Thank you for your purchase!");
     }
