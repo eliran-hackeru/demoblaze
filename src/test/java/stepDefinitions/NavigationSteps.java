@@ -12,7 +12,6 @@ import pages.ProductPage;
 import utils.ConfigReader;
 
 public class NavigationSteps {
-
     WebDriver driver = Hooks.driver;
     HomePage homePage = new HomePage(driver);
 

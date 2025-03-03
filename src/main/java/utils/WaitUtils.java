@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class WaitUtils {
     private static final int DEFAULT_TIMEOUT = 10;
@@ -18,6 +19,11 @@ public class WaitUtils {
     public static void waitForElementToBeClickable(WebDriver driver, WebElement element, int timeoutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
         wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    public static void waitForAllElementsToBeVisible(WebDriver driver, List<WebElement> elements, int timeoutInSeconds) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfAllElements(elements));
     }
 
     public static void waitForAlert(WebDriver driver, int timeoutInSeconds) {

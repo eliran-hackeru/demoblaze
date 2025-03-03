@@ -1,11 +1,16 @@
 package pages;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static utils.WaitUtils.waitForElementToBeClickable;
-import static utils.WaitUtils.waitForElementToBeVisible;
+import java.time.Duration;
+import java.util.List;
+
+import static utils.WaitUtils.*;
 
 public class CartPage extends HomePage{
 
@@ -49,6 +54,11 @@ public class CartPage extends HomePage{
     @FindBy(css = "div.sweet-alert.showSweetAlert.visible h2")
     private WebElement alertMessage;
 
+    @FindBy(xpath = "//tbody/tr/td[2]")
+    private List<WebElement> cartItems; // Column #2 contains product names
+
+    @FindBy(xpath = "//tbody/tr/td[4]/a")
+    private List<WebElement> deleteButtons; // "Delete" buttons for each product
 
     public void placeAnOrder() {
         waitForElementToBeVisible(driver, item, 10);
@@ -74,5 +84,35 @@ public class CartPage extends HomePage{
 
     public String getSuccessMessage() {
         return alertMessage.getText();
+    }
+
+    public boolean isProductInCart(String productName) {
+        //waitForElementToBeVisible(driver, cartItems.getFirst(), 10);
+        waitForAllElementsToBeVisible(driver, cartItems, 10);
+        for (WebElement item : cartItems) {
+            if (item.getText().equalsIgnoreCase(productName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void removeProductFromCart(String productName) {
+        for (int i = 0; i < cartItems.size(); i++) {
+            if (cartItems.get(i).getText().equalsIgnoreCase(productName)) {
+                deleteButtons.get(i).click(); // Click the corresponding delete button
+
+                // Wait for the product to be removed
+                WebElement item = cartItems.get(i);
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+                wait.until(ExpectedConditions.stalenessOf(item)); // Wait for item to disappear
+                return; // Exit after deleting the product
+            }
+        }
+        throw new NoSuchElementException("Product '" + productName + "' not found in the cart.");
+    }
+
+    public boolean isCartEmpty() {
+        return cartItems.isEmpty();
     }
 }

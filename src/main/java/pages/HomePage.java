@@ -13,6 +13,8 @@ import utils.WaitUtils;
 import java.time.Duration;
 import java.util.List;
 
+import static utils.RandomUtil.getRandomNumber;
+
 public class HomePage {
     protected WebDriver driver;
 
@@ -76,7 +78,7 @@ public class HomePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfAllElements(products));
 
-        products.getLast().click();
+        products.get(getRandomNumber()).click();
     }
 
     public void goToCart() {
