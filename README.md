@@ -49,6 +49,14 @@ target/cucumber-reports.html
  ┃ ┗ 📂 runners         # Test runner classes
  ┗ pom.xml              # Maven configuration file
 ```
+## Resources
+All the resources can be found at:
+```
+src/main/resources
+```
+1. chromedriver.exe - The WebDriver for the tests
+2. application.properties - Holds The Base URL for the tests
+3. userCredentials.xml - Holds The User Credentials, such as name and password, for the tests.
 ## Technologies Used
 * Selenium WebDriver – For UI automation
 * Cucumber – For behavior-driven development (BDD)
